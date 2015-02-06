@@ -1,6 +1,7 @@
 var should = require('chai').should();
 
 before(function() {
+  this.timeout(5000);
   this.server = require('../index');
   // this.server.connection({ host: 'test' });
 });
