@@ -1,7 +1,7 @@
 var Hapi = require('hapi');
 var Good = require('good');
 var request = require('request');
-var naruto = require('./lib/naruto');
+var routes = require('./config/routes');
 
 var server = new Hapi.Server();
 server.connection({
@@ -9,35 +9,7 @@ server.connection({
   port: parseInt(process.env.PORT) || 8000
 });
 
-server.route({
-  method: 'GET'
-, path: '/'
-, handler: function(request, reply) {
-    reply();
-  }
-});
-
-server.route({
-  method: 'GET'
-, path: '/naruto-shippuden/episodes/{episodeNumber}'
-, handler: function(request, reply) {
-    var episodeNumber = encodeURIComponent(request.params.episodeNumber);
-    naruto.getInfoForEpisodeNumber(episodeNumber, function(info) {
-      reply(info);
-    });
-  }
-});
-
-server.route({
-  method: 'GET'
-, path: '/naruto-shippuden/seasons/{seasonNumber}'
-, handler: function(request, reply) {
-    var seasonNumber = encodeURIComponent(request.params.seasonNumber);
-    naruto.getInfoForSeasonNumber(seasonNumber, function(info) {
-      reply(info);
-    });
-  }
-});
+server.route(routes);
 
 var usingGood = {
   register: Good

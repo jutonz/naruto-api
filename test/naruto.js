@@ -1,14 +1,13 @@
 var should = require('chai').should();
 
 before(function() {
-  this.timeout(5000);
   this.server = require('../index');
-  // this.server.connection({ host: 'test' });
 });
 
 describe('GET /naruto-shippuden/episodes/{episodeNumber}', function() {
 
   it('should be connectable', function(done) {
+    this.timeout(10000);
     var request = { url: '/naruto-shippuden/episodes/', method: 'GET' };
     this.server.inject(request, function(response) {
       should.exist(response);
@@ -18,6 +17,7 @@ describe('GET /naruto-shippuden/episodes/{episodeNumber}', function() {
   });
 
   it('should retrieve info for ep1', function(done) {
+    this.timeout(10000);
     var request = { url: '/naruto-shippuden/episodes/1', method: 'GET' };
     this.server.inject(request, function(response) {
       should.exist(response);
@@ -36,6 +36,7 @@ describe('GET /naruto-shippuden/episodes/{episodeNumber}', function() {
   });
 
   it('should retrieve info for ep10', function(done) {
+    this.timeout(10000);
     var request = { url: '/naruto-shippuden/episodes/10', method: 'GET' };
     this.server.inject(request, function(response) {
       should.exist(response);
@@ -54,6 +55,7 @@ describe('GET /naruto-shippuden/episodes/{episodeNumber}', function() {
   });
 
   it('should retrieve info for ep100', function(done) {
+    this.timeout(10000);
     var request = { url: '/naruto-shippuden/episodes/100', method: 'GET' };
     this.server.inject(request, function(response) {
       should.exist(response);
@@ -71,11 +73,36 @@ describe('GET /naruto-shippuden/episodes/{episodeNumber}', function() {
     });
   });
 
+  it('should be able to handle two digit season numbers', function(done) {
+    this.timeout(10000);
+    var request = { url: '/naruto-shippuden/episodes/197', method: 'GET' };
+    this.server.inject(request, function(response) {
+      should.exist(response);
+      response.statusCode.should.equal(200);
+
+      var info = JSON.parse(response.payload);
+      should.exist(info);
+      info.season.should.equal('10');
+      done();
+    });
+  });
+
 });
 
 describe('GET /naruto-shippuden/seasons/{seasonNumber}', function() {
 
+  it('should be connectable', function(done) {
+    this.timeout(10000);
+    var request = { url: '/naruto-shippuden/seasons'}
+    this.server.inject(request, function(response) {
+      should.exist(response);
+      response.statusCode.should.equal(404);
+      done();
+    });
+  });
+
   it('should retrieve info for season 7', function(done) {
+    this.timeout(10000);
     var request = { url: '/naruto-shippuden/seasons/7', method: 'GET' };
     this.server.inject(request, function(response) {
       should.exist(response);
@@ -97,6 +124,7 @@ describe('GET /naruto-shippuden/seasons/{seasonNumber}', function() {
   });
 
   it('should retrieve info for season 10', function(done) {
+    this.timeout(10000);
     var request = { url: '/naruto-shippuden/seasons/10', method: 'GET' };
     this.server.inject(request, function(response) {
       should.exist(response);
