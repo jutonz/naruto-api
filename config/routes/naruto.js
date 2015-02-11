@@ -1,3 +1,4 @@
+var Joi = require('joi');
 var naruto = require('../../lib/naruto');
 
 module.exports = [
@@ -10,6 +11,13 @@ module.exports = [
         reply(info);
       });
     }
+  , config: {
+      validate: {
+        params: {
+          episodeNumber: Joi.number().integer().min(1).required()
+        }
+      }
+    }
   }
 , {
     method: 'GET'
@@ -19,6 +27,13 @@ module.exports = [
       naruto.getInfoForSeasonNumber(seasonNumber, function(info) {
         reply(info);
       });
+    }
+  , config: {
+      validate: {
+        params: {
+          seasonNumber: Joi.number().integer().min(1).required()
+        }
+      }
     }
   }
 ];

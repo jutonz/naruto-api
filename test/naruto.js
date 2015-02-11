@@ -87,6 +87,26 @@ describe('GET /naruto-shippuden/episodes/{episodeNumber}', function() {
     });
   });
 
+  it('should only accept episode numbers greater than 0', function(done) {
+    this.timeout(10000);
+    var request = { url: '/naruto-shippuden/episodes/0', method: 'GET' };
+    this.server.inject(request, function(response) {
+      should.exist(response);
+      response.statusCode.should.equal(400);
+      done();
+    });
+  });
+
+  it('should only accept integer episode numbers', function(done) {
+    this.timeout(10000);
+    var request = { url: '/naruto-shippuden/episodes/hithere', method: 'GET' };
+    this.server.inject(request, function(response) {
+      should.exist(response);
+      response.statusCode.should.equal(400);
+      done();
+    });
+  });
+
 });
 
 describe('GET /naruto-shippuden/seasons/{seasonNumber}', function() {
@@ -144,5 +164,26 @@ describe('GET /naruto-shippuden/seasons/{seasonNumber}', function() {
       done();
     });
   });
+
+  it('should only accept season numbers greater than 0', function(done) {
+    this.timeout(10000);
+    var request = { url: '/naruto-shippuden/seasons/0', method: 'GET' };
+    this.server.inject(request, function(response) {
+      should.exist(response);
+      response.statusCode.should.equal(400);
+      done();
+    });
+  });
+
+  it('should only accept integer season numbers', function(done) {
+    this.timeout(10000);
+    var request = { url: '/naruto-shippuden/seasons/hithere', method: 'GET' };
+    this.server.inject(request, function(response) {
+      should.exist(response);
+      response.statusCode.should.equal(400);
+      done();
+    });
+  });
+
 
 });

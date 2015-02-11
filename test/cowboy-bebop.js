@@ -50,4 +50,24 @@ describe('GET /cowboy-bebop/episodes/{episodeNumber}', function() {
     });
   });
 
+  it('should only accept episode numbers greater than 0', function(done) {
+    this.timeout(10000);
+    var request = { url: '/cowboy-bebop/episodes/0', method: 'GET' };
+    this.server.inject(request, function(response) {
+      should.exist(response);
+      response.statusCode.should.equal(400);
+      done();
+    });
+  });
+
+  it('should only accept integer episode numbers', function(done) {
+    this.timeout(10000);
+    var request = { url: '/cowboy-bebop/episodes/hithere', method: 'GET' };
+    this.server.inject(request, function(response) {
+      should.exist(response);
+      response.statusCode.should.equal(400);
+      done();
+    });
+  });
+
 });

@@ -1,3 +1,4 @@
+var Joi = require('joi');
 var cowboyBebop = require('../../lib/cowboy-bebop');
 
 module.exports = [
@@ -9,6 +10,13 @@ module.exports = [
       cowboyBebop.getInfoForEpisodeNumber(episodeNumber, function(info) {
         reply(info);
       });
+    }
+  , config: {
+      validate: {
+        params: {
+          episodeNumber: Joi.number().integer().min(1).required()
+        }
+      }
     }
   }
 ];
