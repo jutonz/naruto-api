@@ -2,6 +2,7 @@ language: node_js
 node_js:
 - '0.10'
 deploy:
+  skip_cleanup: true
   provider: heroku
   api_key:
     secure: WIv+71a0MiJy+RpVAwawn0WhflTn4LT/SmE+MA9hWdN46+gWP8Poe7VFt9lTBr8dqExj6rzjs4v6oay87HOxSiU1A2WPcke7mF8Qpc78M7SKnrCXzKHp7Io2jaX5BhegZI3xQIL7/dVdUBZ3Kb169qDu0I4G81kTXIdohpJezqA=
