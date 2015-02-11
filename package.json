@@ -1,14 +1,14 @@
 {
   "name": "naruto-api",
   "version": "0.0.0",
-  "description": "Gets Naruto episode information from Wikipedia!",
+  "description": "Gets episode information from Wikipedia!",
   "main": "index.js",
   "scripts": {
     "test": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/jutonz/naruto-api.git"
+    "url": "https://github.com/jutonz/show.git"
   },
   "keywords": [
     "npm",
@@ -18,9 +18,9 @@
   "author": "Justin Toniazzo",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/jutonz/naruto-api/issues"
+    "url": "https://github.com/jutonz/show/issues"
   },
-  "homepage": "https://github.com/jutonz/naruto-api",
+  "homepage": "https://github.com/jutonz/show",
   "dependencies": {
     "chai": "^1.10.0",
     "cheerio": "^0.18.0",
