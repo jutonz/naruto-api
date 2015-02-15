@@ -5,8 +5,8 @@ var routes = require('./config/routes');
 
 var server = new Hapi.Server();
 server.connection({
-  host: '0.0.0.0',
-  port: parseInt(process.env.PORT) || 8000
+  host: '0.0.0.0'
+, port: parseInt(process.env.PORT) || 8000
 });
 
 server.route(routes);

@@ -113,7 +113,7 @@ describe('GET /naruto-shippuden/seasons/{seasonNumber}', function() {
 
   it('should be connectable', function(done) {
     this.timeout(10000);
-    var request = { url: '/naruto-shippuden/seasons'}
+    var request = { url: '/naruto-shippuden/seasons'};
     this.server.inject(request, function(response) {
       should.exist(response);
       response.statusCode.should.equal(404);
@@ -184,6 +184,5 @@ describe('GET /naruto-shippuden/seasons/{seasonNumber}', function() {
       done();
     });
   });
-
 
 });

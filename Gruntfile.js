@@ -7,26 +7,26 @@ module.exports = function(grunt) {
 
   grunt.initConfig({
     jscs : {
-      src: allFiles,
-      options: {
+      src: allFiles
+    , options: {
         config: '.jscsrc'
       }
-    },
+    }
 
-    jshint: {
+  , jshint: {
       files: ['Gruntfile.js', '*.js', 'test/*.js', 'lib/*.js']
     , options: {
         laxcomma: true
       }
-    },
+    }
 
-    mochaIstanbul: {
+  , mochaIstanbul: {
       coverage: {
         src: 'test'
       }
-    },
+    }
 
-    coveralls: {
+  , coveralls: {
       options: {
         src: 'coverage/lcov.info'
       , force: false
