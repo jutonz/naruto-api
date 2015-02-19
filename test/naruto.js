@@ -107,6 +107,20 @@ describe('GET /naruto-shippuden/episodes/{episodeNumber}', function() {
     });
   });
 
+  it('should handle episodes without Japanese titles', function(done) {
+    this.timeout(10000);
+    var request = { url: '/naruto-shippuden/episodes/271', method: 'GET' };
+    this.server.inject(request, function(response) {
+      should.exist(response);
+      response.statusCode.should.equal(200);
+
+      var info = JSON.parse(response.payload);
+      should.exist(info);
+      info.title.should.equal('Road to Sakura');
+      done();
+    });
+  });
+
 });
 
 describe('GET /naruto-shippuden/seasons/{seasonNumber}', function() {
